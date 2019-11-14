@@ -17,7 +17,7 @@
             android:id="@+id/call"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="lol"
+            android:text="CALCUL"
             android:layout_weight="6"/>
         <Button
             android:layout_width="0dp"
@@ -49,7 +49,7 @@
             android:layout_alignTop="@id/icon"
             android:layout_toRightOf="@id/icon"
             android:layout_marginLeft="25dp"
-            android:text="Titre"/>
+            android:text="Show dialog"/>
 
         <Button
             android:layout_width="match_parent"

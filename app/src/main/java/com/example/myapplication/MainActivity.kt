@@ -3,8 +3,10 @@ package com.example.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.myapplication.common.*;
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.title as show_button
 
 class Car(val wheelsCount: Int = 4) {
     public fun honk() {
@@ -37,5 +39,27 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Details::class.java)
             this.startActivity(intent)
         }
+
+        show_button.setOnClickListener {
+            var fragment = ConfirmDeleteDialogFragment()
+
+            fragment.listener = object: ConfirmDeleteDialogFragment.ConfirmDeleteListener {
+                override fun onDialogPositiveClick() {
+                    Log.i("Main activity", "oui")
+
+                    var fileListFragment = FileListDialogFragment()
+
+                    fileListFragment.show(supportFragmentManager, "fileList")
+                }
+
+                override fun onDialogNegativeClick() {
+                    Log.i("Main activity", "non")
+                }
+
+            }
+
+            fragment.show(supportFragmentManager, "Confirm Delete")
+        }
+
     }
 }
