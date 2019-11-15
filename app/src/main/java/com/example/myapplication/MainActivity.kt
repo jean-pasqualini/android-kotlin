@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.example.myapplication.common.*;
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.title as show_button
+import kotlinx.android.synthetic.main.activity_main.toolbar as toolbar
 
 class Car(val wheelsCount: Int = 4) {
     public fun honk() {
@@ -64,6 +65,10 @@ class MainActivity : AppCompatActivity() {
 
             fragment.show(supportFragmentManager, "Confirm Delete")
         }
+
+        setSupportActionBar(toolbar)
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
     }
 
