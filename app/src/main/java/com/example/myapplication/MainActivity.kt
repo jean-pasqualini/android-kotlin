@@ -4,6 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import com.example.myapplication.common.*;
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.title as show_button
@@ -61,5 +65,23 @@ class MainActivity : AppCompatActivity() {
             fragment.show(supportFragmentManager, "Confirm Delete")
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val menuInflater = MenuInflater(this)
+        menuInflater.inflate(R.menu.action_bar, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_lol -> {
+                Toast.makeText(this, "Vous êtes en mode lol", Toast.LENGTH_SHORT).show()
+
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 }
