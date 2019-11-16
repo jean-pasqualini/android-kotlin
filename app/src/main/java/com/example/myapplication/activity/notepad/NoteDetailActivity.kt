@@ -4,9 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.Menu
 import android.view.MenuItem
 import com.example.myapplication.R
+import com.example.myapplication.dialog_fragment.ConfirmDeleteDialogFragment
 import com.example.myapplication.model.Note
 import kotlinx.android.synthetic.main.activity_note_detail.title as titleView
 import kotlinx.android.synthetic.main.activity_note_detail.text as textView
@@ -18,6 +20,9 @@ class NoteDetailActivity : AppCompatActivity() {
         val REQUEST_EDIT_NOTE = 1
         val EXTRA_NOTE = "note"
         val EXTRA_NOTE_INDEX = "noteIndex"
+
+        val ACTION_SAVE_NOTE = "com.example.myapplication.actions.ACTION_SAVE_NOTE"
+        val ACTION_DELETE_NOTE = "com.example.myapplication.actions.ACTION_DELETE_NOTE"
     }
 
     lateinit var note: Note
@@ -49,17 +54,46 @@ class NoteDetailActivity : AppCompatActivity() {
                 this.saveNote()
                 return true
             }
+            R.id.action_delete -> {
+                this.showConfirmDeleteNoteDialog()
+                return true
+            }
             else -> return false
         }
+    }
+
+    private fun showConfirmDeleteNoteDialog() {
+        var confirmFragment = ConfirmDeleteDialogFragment(note.title)
+
+        confirmFragment.listener = object: ConfirmDeleteDialogFragment.ConfirmDialogListener {
+            override fun onDialogNegativeClick() {
+                // Nothing
+            }
+
+            override fun onDialogPositiveClick() {
+                deleteNote()
+            }
+        }
+
+        confirmFragment.show(supportFragmentManager, "confirmDeleteDialog")
     }
 
     fun saveNote() {
         note.title = titleView.text.toString()
         note.text = textView.text.toString()
 
-        intent = Intent()
-        intent.putExtra(EXTRA_NOTE, note)
+        intent = Intent(ACTION_SAVE_NOTE)
+        intent.putExtra(EXTRA_NOTE, note as Parcelable)
         intent.putExtra(EXTRA_NOTE_INDEX, noteIndex)
+
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
+    fun deleteNote() {
+        intent = Intent(ACTION_DELETE_NOTE)
+
+        intent.putExtra(EXTRA_NOTE_INDEX, this.noteIndex)
 
         setResult(Activity.RESULT_OK, intent)
         finish()
