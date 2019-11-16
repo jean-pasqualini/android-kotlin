@@ -1,4 +1,4 @@
-package com.example.myapplication.common;
+package com.example.myapplication.activity.common;
 
 var name : String = "John"
     private set

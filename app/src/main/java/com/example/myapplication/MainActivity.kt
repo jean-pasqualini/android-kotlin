@@ -8,68 +8,59 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
-import com.example.myapplication.common.*;
+import com.example.myapplication.activity.country.CountryListActivity
+import com.example.myapplication.activity.notepad.NoteListActivity
+import com.example.myapplication.activity.other.ConfirmDeleteDialogFragment
+import com.example.myapplication.activity.other.Details
+import com.example.myapplication.activity.other.FileListDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.title as show_button
-import kotlinx.android.synthetic.main.activity_main.toolbar as toolbar
-
-class Car(val wheelsCount: Int = 4) {
-    public fun honk() {
-        println("Pouet!")
-    }
-
-    fun hontForWheels() {
-        for (i in 1..this.wheelsCount) {
-            println("raah")
-            println("tatouille")
-        }
-    }
-}
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        println(name)
-        describePerson()
 
-        var car = Car(4)
-
-        println("La voiture à ${car.wheelsCount} roue")
-
-        car.hontForWheels()
-
-        call.setOnClickListener {
+        launch_calcul_button.setOnClickListener {
             val intent = Intent(this, Details::class.java)
             this.startActivity(intent)
         }
 
-        show_button.setOnClickListener {
-            var fragment = ConfirmDeleteDialogFragment()
-
-            fragment.listener = object: ConfirmDeleteDialogFragment.ConfirmDeleteListener {
-                override fun onDialogPositiveClick() {
-                    Log.i("Main activity", "oui")
-
-                    var fileListFragment = FileListDialogFragment()
-
-                    fileListFragment.show(supportFragmentManager, "fileList")
-                }
-
-                override fun onDialogNegativeClick() {
-                    Log.i("Main activity", "non")
-                }
-
-            }
-
-            fragment.show(supportFragmentManager, "Confirm Delete")
+        show_dialog.setOnClickListener {
+            createDialog()
         }
 
-        setSupportActionBar(toolbar)
+        launch_list.setOnClickListener {
+            val intent = Intent(this, CountryListActivity::class.java)
+            startActivity(intent)
+        }
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        launch_notepad_button.setOnClickListener {
+            var intent = Intent(this, NoteListActivity::class.java)
+            startActivity(intent)
+        }
 
+    }
+
+    private fun createDialog() {
+        var fragment = ConfirmDeleteDialogFragment()
+
+        fragment.listener = object : ConfirmDeleteDialogFragment.ConfirmDeleteListener {
+            override fun onDialogPositiveClick() {
+                Log.i("Main activity", "oui")
+
+                var fileListFragment = FileListDialogFragment()
+
+                fileListFragment.show(supportFragmentManager, "fileList")
+            }
+
+            override fun onDialogNegativeClick() {
+                Log.i("Main activity", "non")
+            }
+
+        }
+
+        fragment.show(supportFragmentManager, "Confirm Delete")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

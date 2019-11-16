@@ -7,72 +7,34 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/holo_red_dark"
-        app:title="Root"
-        ></androidx.appcompat.widget.Toolbar>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="12">
-
+        android:orientation="vertical">
         <Button
-            android:id="@+id/call"
-            android:layout_width="0dp"
+            android:id="@+id/launch_calcul_button"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CALCUL"
             android:layout_weight="6"/>
         <Button
-            android:layout_width="0dp"
+            android:id="@+id/show_dialog"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="lol"
-            android:layout_weight="3"/>
+            android:text="Show dialog"/>
         <Button
-            android:layout_width="0dp"
+            android:id="@+id/launch_list"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="lol"
-            android:layout_weight="3"/>
-
+            android:text="Launch list"/>
+        <Button
+            android:id="@+id/launch_notepad_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Launch notepad"/>
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/icon"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-            android:text="icon"/>
 
-        <Button
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/icon"
-            android:layout_toRightOf="@id/icon"
-            android:layout_marginLeft="25dp"
-            android:text="Show dialog"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sous titre"
-            android:layout_alignLeft="@id/title"
-            android:layout_below="@id/title"/>
-
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Je suis la"
-        style="@style/Momo"/>
 
 
 </LinearLayout>
