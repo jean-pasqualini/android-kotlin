@@ -43,4 +43,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview-selection:$recyclerview_version"
     implementation "androidx.cardview:cardview:$card_version"
     implementation "com.android.support:design:$design_version"
+
+    implementation "com.squareup.retrofit2:retrofit:2.3.0"
+    implementation "com.squareup.retrofit2:converter-scalars:2.3.0"
 }

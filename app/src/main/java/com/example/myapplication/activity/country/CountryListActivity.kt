@@ -1,6 +1,7 @@
 package com.example.myapplication.activity.country
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +38,15 @@ class CountryListActivity : AppCompatActivity(), View.OnClickListener {
         recycler_view.adapter = this.adapter
 
         update_countries.setOnClickListener { this.updateCountries() }
+
+        this.refresh_layout.setOnRefreshListener { scheduleRefeshStop() }
+    }
+
+    private fun scheduleRefeshStop() {
+        var handler = Handler()
+        handler.postDelayed({
+            this.refresh_layout.isRefreshing = false
+        }, 2000)
     }
 
     override fun onClick(view: View) {
