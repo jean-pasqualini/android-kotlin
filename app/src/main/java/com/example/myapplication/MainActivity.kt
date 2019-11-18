@@ -13,6 +13,7 @@ import com.example.myapplication.activity.notepad.NoteListActivity
 import com.example.myapplication.activity.other.ConfirmDeleteDialogFragment
 import com.example.myapplication.activity.other.Details
 import com.example.myapplication.activity.other.FileListDialogFragment
+import com.example.myapplication.activity.test_fragment.TestFragmentActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +39,12 @@ class MainActivity : AppCompatActivity() {
         launch_notepad_button.setOnClickListener {
             var intent = Intent(this, NoteListActivity::class.java)
             startActivity(intent)
+        }
+
+        launch_test_fragment.setOnClickListener {
+            startActivity(
+                Intent(this, TestFragmentActivity::class.java)
+            )
         }
 
     }

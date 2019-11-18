@@ -32,6 +32,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Launch notepad"/>
+        <Button
+            android:id="@+id/launch_test_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Launch test fragment"/>
     </LinearLayout>
 
 
