@@ -42,6 +42,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Launch web"/>
+        <Button
+            android:id="@+id/launch_database"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Launch database"/>
     </LinearLayout>
 
 

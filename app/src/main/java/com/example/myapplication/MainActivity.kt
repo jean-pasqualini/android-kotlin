@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.myapplication.activity.DatabaseActivity
 import com.example.myapplication.activity.WebActivity
 import com.example.myapplication.activity.country.CountryListActivity
 import com.example.myapplication.activity.notepad.NoteListActivity
@@ -54,6 +55,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         launch_web.setOnClickListener { this.launch(WebActivity::class.java) }
+
+        launch_database.setOnClickListener { this.launch(DatabaseActivity::class.java )}
 
         if (progress != null) {
             this.progress.progress = 20

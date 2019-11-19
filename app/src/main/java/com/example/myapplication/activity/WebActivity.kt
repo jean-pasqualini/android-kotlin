@@ -8,12 +8,15 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import com.example.myapplication.R
+import com.example.myapplication.http.HttpBinServiceJson
 import com.example.myapplication.http.HttpBinServiceString
+import com.example.myapplication.model.GetData
 import kotlinx.android.synthetic.main.activity_web.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class WebActivity : AppCompatActivity() {
@@ -45,7 +48,7 @@ class WebActivity : AppCompatActivity() {
 
         val service: HttpBinServiceString = retrofit.create(HttpBinServiceString::class.java)
 
-        var call: Call<String> = service.getUserAgent()
+        val call: Call<String> = service.getUserAgent()
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -57,5 +60,26 @@ class WebActivity : AppCompatActivity() {
             }
         })
 
+
+        val retrofitJson = Retrofit.Builder()
+            .baseUrl("http://httpbin.org")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+
+        val serviceJson: HttpBinServiceJson = retrofitJson.create(HttpBinServiceJson::class.java)
+
+        val callJson: Call<GetData> = serviceJson.getUserInfo()
+
+        callJson.enqueue(object : Callback<GetData> {
+            override fun onResponse(call: Call<GetData>, response: Response<GetData>) {
+                Log.i("HTTPJSON", "Response : ${response.body()?.url}")
+            }
+
+            override fun onFailure(call: Call<GetData>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
     }
 }
