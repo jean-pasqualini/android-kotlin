@@ -35,29 +35,5 @@ class DatabaseActivity : AppCompatActivity() {
             Log.i("DATABASE", "Utilisateur : $user")
         }
 
-        val ds = DataSourceConfig()
-        ds.driver = "org.sqlite.JDBC"
-        ds.url = "jdbc:sqlite:data"
-        ds.username = ""
-        ds.password = ""
-        ds.isolationLevel = Connection.TRANSACTION_SERIALIZABLE
-
-        val config = ServerConfig()
-        config.name = "Sqlite"
-        config.isDdlGenerate = true
-        config.isDdlRun = true
-        config.isAutoCommitMode = true
-        config.isDefaultServer = true
-        config.databasePlatform = SQLitePlatform()
-        //config.databasePlatform.getDbDdlSyntax().setIdentity("")
-        config.dataSourceConfig = ds
-
-        val server = EbeanServerFactory.create(config)
-        val myUser = DomainUser()
-        myUser.name = "Api"
-        myUser.age = 10
-        myUser.email = "api@api.fr"
-
-        DB.save(myUser)
     }
 }
